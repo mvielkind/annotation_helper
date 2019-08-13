@@ -5,7 +5,7 @@ from pathlib import Path
 import uuid
 
 
-class AnnotateAssist:
+class AnnotateHelper:
 
     def __init__(self, raw_text):
         """
