@@ -1,4 +1,4 @@
-# My Annotation Helper Buddy
+# A Lightweight Jupyter Annotation Helper
 
 Recently I've been doing a lot of data annotation.  I've been working on a project to extract a [shopping list from a 
 screenshot](https://matthewvielkind.dev/home/2019/6/23/extracting-a-list-from-an-image) that requires a custom NLP model
