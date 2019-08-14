@@ -3,6 +3,7 @@ import json
 import spacy
 from pathlib import Path
 import uuid
+from colorama import Fore
 
 
 class AnnotateHelper:
@@ -98,10 +99,7 @@ class AnnotateHelper:
 
             subset_end = end_idx + context_len
 
-            cred = '\033[91m'
-            cend = '\033[0m'
-
-            highlight_text = cred + self.raw_text[start_idx:end_idx] + cend
+            highlight_text = Fore.RED + self.raw_text[start_idx:end_idx] + Fore.RESET
 
             print("".join([self.raw_text[subset_start:start_idx], highlight_text, self.raw_text[end_idx:subset_end]]))
             add_entity = input("Do you want to add this to your entity list? (y/n) ")
@@ -140,11 +138,11 @@ class AnnotateHelper:
         :return: Prints the document with entities color coded.
         """
         colors = [
-            '\033[91m',
-            '\033[96m',
-            '\033[36m',
-            '\033[94m',
-            '\033[92m'
+            'RED',
+            'GREEN',
+            'YELLOW',
+            'BLUE',
+            'MAGENTA'
         ]
 
         if focus_entity is not None:
@@ -155,7 +153,7 @@ class AnnotateHelper:
 
         print("COLOR-ENTITY KEY: ")
         for entity, color in color_map.items():
-            print(color + entity + '\033[0m')
+            print(Fore.__getattribute__(color) + entity + Fore.RESET)
         print("\n\n")
 
         annotated_text = ''
@@ -165,7 +163,9 @@ class AnnotateHelper:
 
             annotated_text += self.raw_text[track_idx:e["start_idx"]]
 
-            annotated_text += cmap + self.raw_text[e["start_idx"]:e["end_idx"]] + '\033[0m'
+            #annotated_text += cmap + self.raw_text[e["start_idx"]:e["end_idx"]] + '\033[0m'
+
+            annotated_text += Fore.__getattribute__(cmap) + self.raw_text[e["start_idx"]:e["end_idx"]] + Fore.RESET
 
             track_idx = e["end_idx"]
 
