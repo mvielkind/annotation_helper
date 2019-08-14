@@ -1,1 +1,2 @@
 spacy==2.1.8
+colorama==0.4.1
